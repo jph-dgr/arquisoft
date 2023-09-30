@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+{% block content %}
+    <h2>Adendas para la Historia Clínica {{ historia_id }}</h2>
+    <ul>
+        {% for adenda in adenda_list %}
+            <li>{{ adenda.fecha }} por {{ adenda.autor }}: {{ adenda.nota }}</li>
+        {% endfor %}
+    </ul>
+    <a href="{% url 'adenda_create' historia_id=historia_id %}">Agregar Adenda</a>
+{% endblock %}

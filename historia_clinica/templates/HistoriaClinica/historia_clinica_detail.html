@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="content">
+    <div class="page-header-title">
+        <h4 class="page-title">Historia Clínica de {{ historia.paciente.nombre }}</h4>
+    </div>
+
+    <br>
+
+    <div class="page-content-wrapper">
+        <div class="container">
+            <div class="panel panel-default">
+                <div class="panel-body">
+
+                    <h5>Condiciones Crónicas:</h5>
+                    <ul>
+                        {% for condicion in historia.condiciones_cronicas.all %}
+                        <li>{{ condicion.nombre }}</li>
+                        {% endfor %}
+                    </ul>
+
+                    <h5>Cirugías:</h5>
+                    <ul>
+                        {% for cirugia in historia.cirugias.all %}
+                        <li>{{ cirugia.nombre }}</li>
+                        {% endfor %}
+                    </ul>
+
+                    <h5>Adendas:</h5>
+                    <ul>
+                        {% for adenda in adenda_list %}
+                        <li>{{ adenda.fecha }} por {{ adenda.autor }}: {{ adenda.nota }}</li>
+                        {% endfor %}
+                    </ul>
+                    <h3>Agregar Adenda</h3>
+                    <form method="POST">
+                        {% csrf_token %}
+                        {{ form.as_p }}
+                        <button type="submit">Agregar Adenda</button>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
