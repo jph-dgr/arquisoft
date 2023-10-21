@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-lpcsk7*fjra^ew%ln+sa%=uzgdu%g4n1-11^_r89y6pb3!@bf6
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -82,7 +82,7 @@ DATABASES = {
         'NAME': 'rasi_db',
         'USER': 'rasi_user',
         'PASSWORD': 'isis2503',
-        'HOST': 'localhost',
+        'HOST': '10.128.0.2',
         'PORT': '5432', 
     }
 }
