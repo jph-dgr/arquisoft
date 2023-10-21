@@ -19,3 +19,9 @@ def update_paciente(id, form_data):
 def delete_paciente(id):
     paciente = Paciente.objects.get(id=id)
     paciente.delete()
+
+def get_paciente_by_documento(documento):
+    try:
+        return Paciente.objects.get(documento=documento)
+    except Paciente.DoesNotExist:
+        return None

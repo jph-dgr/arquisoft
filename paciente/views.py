@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.urls import reverse
 from .forms import PacienteForm
-from .logic.paciente_logic import get_pacientes, get_paciente, create_paciente, update_paciente, delete_paciente
+from .logic.paciente_logic import get_pacientes, get_paciente, create_paciente, update_paciente, delete_paciente, get_paciente_by_documento
 
 def paciente_list(request):
     pacientes = get_pacientes()
@@ -38,3 +38,11 @@ def paciente_delete(request, id):
     delete_paciente(id)
     messages.success(request, 'Paciente eliminado correctamente.')
     return redirect(reverse('paciente_list'))
+
+def paciente_search(request):
+    paciente = None
+    if request.method == 'POST':
+        documento = request.POST.get('documento')
+        paciente = get_paciente_by_documento(documento)
+    context = {'paciente': paciente}
+    return render(request, 'Paciente/paciente_search.html', context)

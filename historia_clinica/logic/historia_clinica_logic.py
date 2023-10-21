@@ -1,3 +1,4 @@
+from paciente.models import Paciente
 from ..models import HistoriaClinica
 
 def get_historias_clinicas():
@@ -19,6 +20,14 @@ def create_historia_clinica(data):
 
 def get_historia_clinica_by_id(historia_id):
     return HistoriaClinica.objects.get(id=historia_id)
+
+def get_historia_by_documento(documento):
+    try:
+        paciente = Paciente.objects.get(documento=documento)
+        return HistoriaClinica.objects.get(paciente=paciente)
+    except (Paciente.DoesNotExist, HistoriaClinica.DoesNotExist):
+        return None
+
 
 
 # Agregamos más funciones según las necesidades (actualizar, eliminar, etc.).
