@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'historia_clinica',
     'paciente',
+    'social_django',
 ]
 
 MIDDLEWARE = [
@@ -130,3 +131,20 @@ STATIC_URL = '/static/'
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+LOGIN_URL = "/login/auth0" 
+LOGIN_REDIRECT_URL = "/" 
+LOGOUT_REDIRECT_URL = "https://isis2503-dgomezrey.us.auth0.com/v2/logout?returnTo=http%3A%2F%2Fip_publica_instancia:8080"
+SOCIAL_AUTH_TRAILING_SLASH = False # Remove end slash from routes 
+SOCIAL_AUTH_AUTH0_DOMAIN = 'isis2503-dgomezrey.us.auth0.com' 
+SOCIAL_AUTH_AUTH0_KEY = 'aOIPBtxcPCWLznsyRDWg4r7fbOUZWTUw' 
+SOCIAL_AUTH_AUTH0_SECRET = 'Qp2zZfsDzeZX9Bg3gXLTtubkO0hr2C8qhYRt3bmQjuKeT621xdd0W8SHXz3m4KxF'
+
+SOCIAL_AUTH_AUTH0_SCOPE = [ 
+    'openid',
+    'profile',
+    'email',
+    'role',
+    ]
+
+AUTHENTICATION_BACKENDS = { 'monitoring.auth0backend.Auth0', 'django.contrib.auth.backends.ModelBackend', } 
